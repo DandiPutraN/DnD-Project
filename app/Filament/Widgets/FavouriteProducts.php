@@ -21,11 +21,18 @@ class FavouriteProducts extends BaseWidget
                 ->take(10)
             )
             ->columns([
-                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('name')
                 ->searchable(),
                 Tables\Columns\TextColumn::make('order_products_count')
                 ->label('Total Ordered Product'),
+            ])
+            ->actions([
+                Tables\Actions\Action::make('downloadGambar')
+                ->label('Gambar')
+                ->icon('heroicon-o-photo')
+                ->url(fn ($record) => url('storage/' . strtoupper($record->image)))
+                ->openUrlInNewTab()
+                ->visible(fn ($record) => !empty($record->image)),
             ])
             ->defaultPaginationPageOption(5);
     }

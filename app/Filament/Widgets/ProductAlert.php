@@ -19,7 +19,6 @@ class ProductAlert extends BaseWidget
                 Product::query()->where('stock', '<=', 10)->orderBy('stock', 'desc')
             )
             ->columns([
-                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('name')
                 ->searchable(),
                 Tables\Columns\BadgeColumn::make('stock')
@@ -34,6 +33,14 @@ class ProductAlert extends BaseWidget
                     
                 })
                 ->sortable()
+            ])
+            ->actions([
+                Tables\Actions\Action::make('downloadGambar')
+                ->label('Gambar')
+                ->icon('heroicon-o-photo')
+                ->url(fn ($record) => url('storage/' . strtoupper($record->image)))
+                ->openUrlInNewTab()
+                ->visible(fn ($record) => !empty($record->image)),
             ])
             ->defaultPaginationPageOption(5);
     }

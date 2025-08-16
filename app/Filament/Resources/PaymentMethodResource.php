@@ -31,26 +31,6 @@ class PaymentMethodResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\FileUpload::make('image')
-                    ->required()
-                    ->acceptedFileTypes(['image/png','image/jpg','image/jpeg'])
-                    ->rules([ 'mimes:png,jpeg,jpg'])
-                    ->imageEditor()
-                    ->imageEditorAspectRatios([
-                        null,
-                        '16:9',
-                        '4:3',
-                        '1:1',
-                    ])
-                    ->imageEditorMode(2)
-                    ->openable()
-                    ->downloadable()
-                    ->previewable(true)
-                    ->minSize(1)
-                    ->maxSize(500)
-                    ->disk('public')
-                    ->directory('payment-method')
-                    ->visibility('public'),
                 Forms\Components\Toggle::make('is_cash')
                     ->required(),
             ]);
@@ -62,7 +42,6 @@ class PaymentMethodResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\IconColumn::make('is_cash')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')

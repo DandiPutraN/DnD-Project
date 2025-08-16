@@ -6,7 +6,7 @@
 			<h1>Dandi Putra N</h1>
 			<h3>A <span class="multiple-text"></span></h3>
 			<div class="links">
-			<a href="https://drive.google.com/file/d/1WQAJrMhBNJIw0MDEZJYYAHAXvq36HezL/view?usp=sharing" class="btn">View Portfolio</a>
+			<a href="https://drive.google.com/file/d/1v4ylnPmhkGWfgJNTfYjSK4tJXn1PKqIv/view?usp=sharing" class="btn">View Portfolio</a>
 			<div class="button-links">
 				<a href="https://github.com/DandiPutraN" target="_blank"
 				><i class="bx bxl-github"></i
@@ -158,7 +158,7 @@
               ><i class="bx bxl-instagram"></i
             ></a> --}}
             <a
-              href="https://drive.google.com/file/d/1WQAJrMhBNJIw0MDEZJYYAHAXvq36HezL/view?usp=sharing"
+              href="https://drive.google.com/file/d/1v4ylnPmhkGWfgJNTfYjSK4tJXn1PKqIv/view?usp=sharing"
               target="_blank"
               ><i class="bx bxs-download"></i
             ></a>
@@ -176,7 +176,7 @@
 			transition: transform 0.3s ease, box-shadow 0.3s ease;
 		  ">
 			<img
-			  src="{{ asset('front/images/Portfolio/porto.JPG') }}"
+			  src="{{ asset('front/images/Portfolio/porto.jpg') }}"
 			  alt="Portofolio_DPN"
 			  title="Portofolio_DPN"
 			  style="

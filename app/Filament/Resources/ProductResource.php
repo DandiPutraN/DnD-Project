@@ -117,6 +117,13 @@ class ProductResource extends Resource
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),                
+                Tables\Columns\TextColumn::make('barcode_image')
+                ->label('Barcode')
+                ->state(function ($record) {
+                    return '<img src="https://bwipjs-api.metafloor.com/?bcid=code128&text=' . $record->barcode . '&scale=2&includetext" height="60">';
+                })
+                ->html(),
+
                 Tables\Columns\TextColumn::make('barcode')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -144,6 +151,14 @@ class ProductResource extends Resource
                 ->visible(fn ($record) => !empty($record->image)),
 
                 Tables\Actions\ActionGroup::make([
+                Tables\Actions\Action::make('print_barcode')
+                    ->label('Cetak Barcode')
+                    ->icon('heroicon-o-printer')
+                    ->url(fn ($record) =>
+                        'https://bwipjs-api.metafloor.com/?bcid=code128&text=' . $record->barcode . '&scale=3&includetext'
+                    )
+                    ->openUrlInNewTab()
+                    ->color('secondary'),
                     Tables\Actions\ViewAction::make(),
                     Tables\Actions\EditAction::make(),
                     Tables\Actions\DeleteAction::make()
