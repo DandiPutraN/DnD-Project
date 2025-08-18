@@ -69,6 +69,11 @@ class UserResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            // ->modifyQueryUsing(function ($query) {
+            //     return $query->whereDoesntHave('roles', function ($query) {
+            //         $query->where('name', 'super_admin');
+            //     });
+            // })
             ->columns([
                 TextColumn::make('name'),
                 TextColumn::make('email')
