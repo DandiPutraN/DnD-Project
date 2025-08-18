@@ -241,7 +241,7 @@ class PointOfSales extends Component implements HasForms
 
         if ($product) 
         {
-            $this->addToOrder($product->id);
+            $this->addToOrders($product->id);
         } else 
         {
             Notification::make()
