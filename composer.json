@@ -9,6 +9,7 @@
         "php": "^8.2",
         "bezhansalleh/filament-shield": "^3.3",
         "dedoc/scramble": "^0.11.33",
+        "designthebox/barcode-field": "^0.0.6",
         "filament/filament": "^3.2",
         "flowframe/laravel-trend": "^0.3.0",
         "laravel/framework": "^11.31",

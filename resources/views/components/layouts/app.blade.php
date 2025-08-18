@@ -52,4 +52,8 @@
         <!-- Custom JS -->
         <script src="{{ asset('front/script.js') }}" defer></script>
     </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 77a3d166bdd506020323b922cd30eed538b6bac3
