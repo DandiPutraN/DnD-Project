@@ -34,7 +34,7 @@
     ],
     "env": {
         "APP_ENV": "production",
-        "APP_URL": "https://dnd-project-portofolio.vercel.app/",
+        "APP_URL": "https://dnd-project-portofolio.vercel.app//",
         "APP_DEBUG": "false",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
