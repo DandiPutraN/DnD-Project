@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Dedoc\Scramble\Scramble;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Dedoc\Scramble\Support\Generator\OpenApi;
@@ -23,6 +24,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if ($this->app->environment('production')) {
+            $forwardedProto = request()->header('x-forwarded-proto');
+
+            if ($forwardedProto === 'https') {
+                URL::forceScheme('https');
+            }
+        }
+        
         Model::unguard();
         
         Scramble::afterOpenApiGenerated(function (OpenApi $openApi) {
