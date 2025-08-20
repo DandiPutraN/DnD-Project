@@ -34,8 +34,7 @@
     ],
     "env": {
         "APP_ENV": "production",
-        "APP_URL": "https://dnd-portofolio-project.vercel.app/",
-        "APP_DEBUG": "false",
+        "APP_DEBUG": "true",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
@@ -44,11 +43,6 @@
         "VIEW_COMPILED_PATH": "/tmp",
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
-        "SESSION_DRIVER": "cookie",
-        "DB_CONNECTION": "mysql",
-        "DB_HOST": "swl6u3.h.filess.io",
-        "DB_PORT": "61002",
-        "DB_DATABASE": "dndportofolio_presentbow",
-        "DB_USERNAME": "dndportofolio_presentbow"
+        "SESSION_DRIVER": "cookie"
     }
 }
