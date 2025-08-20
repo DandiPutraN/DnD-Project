@@ -44,5 +44,10 @@
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie"
+    },
+        "git": {
+        "deploymentEnabled": {
+            "dev": false
+        }
     }
 }
