@@ -53,11 +53,12 @@ return [
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
+            'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::ATTR_PERSISTENT => true,
-            ]) : [],
+            'options' => [
+                PDO::ATTR_PERSISTENT => false, // 🔑 jangan simpan koneksi lama
+            ],
         ],
 
         'mariadb' => [
