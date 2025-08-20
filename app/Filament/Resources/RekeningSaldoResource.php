@@ -239,7 +239,7 @@ class RekeningSaldoResource extends Resource
                         ->reactive()
                         ->afterStateUpdated(function ($state, callable $set, $get) {
                             // Update total biaya ketika biaya berubah
-                            $subtotal = collect($get('_items'))
+                            $subtotal = collect($get('rekeningsaldo_items'))
                                 ->sum(fn($item) => $item['biaya'] ?? 0);
                     
                             $set('subtotal', $subtotal);
@@ -715,7 +715,7 @@ class RekeningSaldoResource extends Resource
                         // }
                     })
                     ->requiresConfirmation()
-                    ->visible(fn (RekeningSaldo $record) => $record->status === 'pending'),
+                    ->visible(fn (rekeningsaldo $record) => $record->status === 'pending'),
                 
                 // Tables\Actions\Action::make('markAsPending')
                 //     ->label('Tandai Belum Lunas')

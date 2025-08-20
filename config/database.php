@@ -56,9 +56,9 @@ return [
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
-            'options' => [
-                PDO::ATTR_PERSISTENT => false, // 🔑 jangan simpan koneksi lama
-            ],
+            'options' => extension_loaded('pdo_mysql') ? [
+                PDO::ATTR_PERSISTENT => false,
+            ] : [],
         ],
 
         'mariadb' => [

@@ -32,7 +32,10 @@ class AppServiceProvider extends ServiceProvider
         }
     }
 
-        DB::disconnect('mysql');
+        // Tutup koneksi MySQL setelah setiap request selesai
+        app()->terminating(function () {
+            DB::disconnect();
+        });
         
         Model::unguard();
         
