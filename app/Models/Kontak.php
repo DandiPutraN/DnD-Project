@@ -18,6 +18,6 @@ class Kontak extends Model
 
     public function rekeningsaldo()
     {
-        return $this->hasMany(Rekeningsaldo::class);
+        return $this->hasMany(RekeningSaldo::class);
     }
 }

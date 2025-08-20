@@ -10,7 +10,7 @@ class Rekeningsaldo extends Model
 {
     public function rekeningsaldo_items()
     {
-        return $this->hasMany(Rekeningsaldoitem::class);
+        return $this->hasMany(RekeningSaldoItem::class);
     }
     
     public function account()

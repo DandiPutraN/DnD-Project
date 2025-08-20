@@ -35,7 +35,7 @@ class Transaction extends Model
     
     public function rekeningsaldo()
     {
-        return $this->hasOne(Rekeningsaldo::class);
+        return $this->hasOne(RekeningSaldo::class);
     }
 
     public function asset_items()

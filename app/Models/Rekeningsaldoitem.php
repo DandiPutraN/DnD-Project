@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Rekeningsaldoitem extends Model
+class RekeningSaldoItem extends Model
 {
     public function rekeningsaldo()
     {
-        return $this->belongsTo(Rekeningsaldo::class); 
+        return $this->belongsTo(RekeningSaldo::class); 
     }
 
     public function account()

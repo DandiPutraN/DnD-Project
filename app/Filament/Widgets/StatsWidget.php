@@ -8,7 +8,7 @@ use App\Models\transaction;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Number;
 use App\Models\TransactionItem;
-use App\Models\Rekeningsaldoitem;
+use App\Models\RekeningSaldoItem;
 use Illuminate\Support\Facades\DB;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Filament\Widgets\Concerns\InteractsWithPageFilters;
@@ -30,7 +30,7 @@ class StatsWidget extends BaseWidget
         // Penghitungan Rekening
         $rekeningData = $this->calculateBalanceData('1-00002 - Rekening', 'Terima Dana', $start, $end);
 
-        $totalIncome = Rekeningsaldoitem::query()
+        $totalIncome = RekeningSaldoItem::query()
         ->join('rekeningsaldos', 'rekeningsaldoitems.rekeningsaldo_id', '=', 'rekeningsaldos.id')  // Melakukan join dengan tabel 'saldos'
         ->where('rekeningsaldos.kas_bank', 'Terima Dana')  // Menambahkan kondisi pada kolom 'kas_bank'
         ->sum('rekeningsaldoitems.biaya');  // Mengambil total 'biaya' dari tabel 'saldoitems'    
