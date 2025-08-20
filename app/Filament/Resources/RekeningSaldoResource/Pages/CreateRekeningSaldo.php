@@ -4,7 +4,7 @@ namespace App\Filament\Resources\RekeningSaldoResource\Pages;
 
 use App\Filament\Resources\RekeningSaldoResource;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\RekeningSaldo;
+use App\Models\Rekeningsaldo;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
@@ -26,7 +26,7 @@ class CreateRekeningSaldo extends CreateRecord
         unset($data['rekeningsaldo_items']); 
     
         // Buat Saldo (data utama)
-        $rekeningsaldo = RekeningSaldo::create($data);
+        $rekeningsaldo = Rekeningsaldo::create($data);
     
         // Simpan Saldo Items
         if (!empty($rekeningsaldo_items)) {

@@ -23,7 +23,7 @@ class TransactionItem extends Model
 
     public function rekeningsaldoItems()
     {
-        return $this->hasMany(RekeningSaldoItem::class); //  , 'rekening_saldo_id'
+        return $this->hasMany(Rekeningsaldoitem::class); //  , 'rekening_saldo_id'
     }
 
     public function asset_items()

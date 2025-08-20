@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\RekeningSaldo;
+use App\Models\Rekeningsaldo;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class RekeningSaldoPolicy
+class RekeningsaldoPolicy
 {
     use HandlesAuthorization;
 
@@ -21,7 +21,7 @@ class RekeningSaldoPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, RekeningSaldo $rekeningSaldo): bool
+    public function view(User $user, Rekeningsaldo $Rekeningsaldo): bool
     {
         return $user->can('view_rekening::saldo');
     }
@@ -37,7 +37,7 @@ class RekeningSaldoPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, RekeningSaldo $rekeningSaldo): bool
+    public function update(User $user, Rekeningsaldo $Rekeningsaldo): bool
     {
         return $user->can('update_rekening::saldo');
     }
@@ -45,7 +45,7 @@ class RekeningSaldoPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, RekeningSaldo $rekeningSaldo): bool
+    public function delete(User $user, Rekeningsaldo $Rekeningsaldo): bool
     {
         return $user->can('delete_rekening::saldo');
     }
@@ -61,7 +61,7 @@ class RekeningSaldoPolicy
     /**
      * Determine whether the user can permanently delete.
      */
-    public function forceDelete(User $user, RekeningSaldo $rekeningSaldo): bool
+    public function forceDelete(User $user, Rekeningsaldo $Rekeningsaldo): bool
     {
         return $user->can('force_delete_rekening::saldo');
     }
@@ -77,7 +77,7 @@ class RekeningSaldoPolicy
     /**
      * Determine whether the user can restore.
      */
-    public function restore(User $user, RekeningSaldo $rekeningSaldo): bool
+    public function restore(User $user, Rekeningsaldo $Rekeningsaldo): bool
     {
         return $user->can('restore_rekening::saldo');
     }
@@ -93,7 +93,7 @@ class RekeningSaldoPolicy
     /**
      * Determine whether the user can replicate.
      */
-    public function replicate(User $user, RekeningSaldo $rekeningSaldo): bool
+    public function replicate(User $user, Rekeningsaldo $Rekeningsaldo): bool
     {
         return $user->can('replicate_rekening::saldo');
     }

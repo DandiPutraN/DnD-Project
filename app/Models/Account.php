@@ -18,7 +18,7 @@ class Account extends Model
 
     public function rekeningsaldo_items()
     {
-        return $this->hasMany(RekeningSaldoItem::class);
+        return $this->hasMany(Rekeningsaldoitem::class);
     }
 
     public function transaction()

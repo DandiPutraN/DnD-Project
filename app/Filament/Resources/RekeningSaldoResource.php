@@ -10,7 +10,7 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
-use App\Models\RekeningSaldo;
+use App\Models\Rekeningsaldo;
 use Illuminate\Support\Number;
 use Filament\Resources\Resource;
 use Illuminate\Support\Collection;
@@ -40,7 +40,7 @@ use App\Filament\Resources\RekeningSaldoResource\RelationManagers;
 
 class RekeningSaldoResource extends Resource
 {
-    protected static ?string $model = RekeningSaldo::class;
+    protected static ?string $model = Rekeningsaldo::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-credit-card';
 
@@ -204,7 +204,7 @@ class RekeningSaldoResource extends Resource
 
                     TextInput::make('nomor')
                     ->disabled()
-                    ->default(fn ($state, $record) => $record ? $record->nomor : app(\App\Models\RekeningSaldo::class)->generateKodeBank()),
+                    ->default(fn ($state, $record) => $record ? $record->nomor : app(\App\Models\Rekeningsaldo::class)->generateKodeBank()),
                     
                     
                     DatePicker::make('tanggal_transaksi')
@@ -578,7 +578,7 @@ class RekeningSaldoResource extends Resource
                     Tables\Actions\Action::make('printVoucher')
                     ->label('Cetak Voucher')
                     ->icon('heroicon-o-printer')
-                    ->action(function (RekeningSaldo $record) {
+                    ->action(function (Rekeningsaldo $record) {
                         // Pastikan transaksi memuat status dari transaksi terkait
                         $transaction = $record->transaction; // atau mungkin $record->saldo_items jika terkait
                 
@@ -594,12 +594,12 @@ class RekeningSaldoResource extends Resource
                             ->danger()
                             ->send();
                     })
-                    ->visible(fn (RekeningSaldo $record) => $record->kas_bank === 'Kirim Dana' && $record->transaction && $record->transaction->status === 'paid'), 
+                    ->visible(fn (Rekeningsaldo $record) => $record->kas_bank === 'Kirim Dana' && $record->transaction && $record->transaction->status === 'paid'), 
 
                     Tables\Actions\Action::make('print')
                     ->label('Cetak Voucher')
                     ->icon('heroicon-o-printer')
-                    ->action(function (RekeningSaldo $record) {
+                    ->action(function (Rekeningsaldo $record) {
                         // Periksa apakah kas_bank bernilai 'Terima Dana'
                         if ($record->kas_bank === 'Terima Dana') {
                             return redirect()->route('rekeningsaldo.print', $record->id);
@@ -611,7 +611,7 @@ class RekeningSaldoResource extends Resource
                             ->danger()
                             ->send();
                     })
-                    ->visible(fn (RekeningSaldo $record) => $record->kas_bank === 'Terima Dana'),
+                    ->visible(fn (Rekeningsaldo $record) => $record->kas_bank === 'Terima Dana'),
                 
                     Tables\Actions\Action::make('markAsPaid')
                     ->label('Tandai Lunas')

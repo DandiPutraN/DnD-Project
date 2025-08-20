@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\RekeningSaldoResource\Widgets;
 
 use Illuminate\Support\Number;
-use App\Models\RekeningSaldoItem;
+use App\Models\Rekeningsaldoitem;
 use Illuminate\Support\Facades\DB;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
@@ -13,7 +13,7 @@ class RekeningSaldoStats extends BaseWidget
     protected function getStats(): array
     {        
 
-        $totalIncome = RekeningSaldoItem::query()
+        $totalIncome = Rekeningsaldoitem::query()
         ->join('rekeningsaldos', 'rekening_saldo_items.rekeningsaldo_id', '=', 'rekeningsaldos.id')  // Melakukan join dengan tabel 'saldos'
         ->where('rekeningsaldos.kas_bank', 'Terima Dana')  // Menambahkan kondisi pada kolom 'kas_bank'
         ->sum('rekening_saldo_items.biaya');  // Mengambil total 'biaya' dari tabel 'saldoitems'    
