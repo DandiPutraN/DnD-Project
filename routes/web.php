@@ -14,16 +14,6 @@ use App\Http\Controllers\RekeningSaldoController;
 
 Route::get('/', HomePage::class);
 
-Route::get('/test-session', function () {
-    session(['foo' => 'bar']);
-    return 'session set';
-});
-
-Route::get('/check-session', function () {
-    return session('foo', 'no session');
-});
-
-
 Route::get('transaction/print/{id}', [TransactionController::class, 'print'])->name('transaction.print');
 
 Route::get('saldo/print/{id}', [SaldoController::class, 'print'])->name('saldo.print');

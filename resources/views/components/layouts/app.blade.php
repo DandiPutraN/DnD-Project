@@ -1,25 +1,44 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dandi Putra Nugraha Portfolio</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('front/images/Logo.png') }}" />
-    <link rel="stylesheet" href="{{ asset('front/style.css') }}" />
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-</head>
-<body>
-    @livewire('partials.navbar')
-    <main>{{ $slot }}</main>
-    @livewire('partials.footer')
-    @livewireScripts
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+        <title>Dandi Putra Nugraha Portfolio</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('front/images/Logo.png') }}" />
+    
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{{ asset('front/style.css') }}" />
+    
+        <!-- Box Icons -->
+        <link
+          href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+          rel="stylesheet"
+        />
+      </head>
 
+    <body>
+        @livewire('partials.navbar')
+        <main>
+            {{ $slot }}
+        </main>
+        @livewire('partials.footer')
+        @livewireScripts
+    </body>
+    <!-- Typed.js -->
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+    <!-- Email.js -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
+      (function () {
         emailjs.init("tkKxnFTTTampSyr3G");
+      })();
     </script>
+
+    <!-- Custom js -->
     <script src="{{ asset('front/script.js') }}" defer></script>
-</body>
+
 </html>
