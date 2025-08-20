@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Log;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -10,20 +9,10 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__ . '/../routes/console.php',
         health: '/up',
     )
-    ->withMiddleware(function ($middleware) {
-        // Debugging setiap request
-        $middleware->append(function (\Illuminate\Http\Request $request, \Closure $next) {
-            Log::info('Request Debug', [
-                'url' => $request->fullUrl(),
-                'method' => $request->method(),
-                'headers' => $request->headers->all(),
-                'cookies' => $request->cookies->all(),
-                'session' => session()->all(),
-            ]);
-
-            return $next($request);
-        });
-    })
+    ->withMiddleware([
+        // Tambahkan nama class middleware debug request di sini
+        \App\Http\Middleware\RequestLogger::class,
+    ])
     ->withExceptions(function ($exceptions) {
         // bisa ditambahkan custom exception handler di sini
     })
