@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\SaldoResource\Widgets;
 
 use App\Models\SaldoItem;
-use App\Models\transactionitem;
+use App\Models\TransactionItem;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Illuminate\Support\Facades\DB;
 use Filament\Widgets\StatsOverviewWidget\Stat;

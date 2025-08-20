@@ -16,7 +16,7 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\Summarizers\Sum;
 use App\Filament\Resources\AssetResource;
-use App\Models\transactionitem;
+use App\Models\TransactionItem;
 use Filament\Forms\Components\DatePicker;
 use Filament\Infolists\Components\TextEntry;
 use Illuminate\Database\Eloquent\SoftDeletingScope;

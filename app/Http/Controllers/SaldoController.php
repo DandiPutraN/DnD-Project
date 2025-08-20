@@ -19,11 +19,5 @@ class SaldoController extends Controller
         $transaction = Saldo::with('saldo_items', 'kontak')->findOrFail($id); 
         return view('saldo.voucher', compact('transaction')); 
     }
-
-    // public function printVoucher($id)
-    // {
-    //     $transaction = transaction::with('items')->findOrFail($id); // Mengambil transaksi berdasarkan ID dan relasi item
-    //     return view('saldo.voucher', compact('transaction')); // Mengirim data transaksi ke view
-    // }
     
 }
