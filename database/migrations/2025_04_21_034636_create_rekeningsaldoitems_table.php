@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rekening_saldo_items', function (Blueprint $table) {
+        Schema::create('rekeningsaldo_items', function (Blueprint $table) {
             $table->id();
             $table->foreignUuid('rekeningsaldo_id'); // Foreign key untuk UUID
             $table->unsignedBigInteger('account_id');

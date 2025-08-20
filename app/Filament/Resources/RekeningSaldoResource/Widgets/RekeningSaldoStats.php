@@ -14,9 +14,9 @@ class RekeningSaldoStats extends BaseWidget
     {        
 
         $totalIncome = Rekeningsaldoitem::query()
-        ->join('rekeningsaldos', 'rekening_saldo_items.rekeningsaldo_id', '=', 'rekeningsaldos.id')  // Melakukan join dengan tabel 'saldos'
+        ->join('rekeningsaldos', 'rekeningsaldo_items.rekeningsaldo_id', '=', 'rekeningsaldos.id')  // Melakukan join dengan tabel 'saldos'
         ->where('rekeningsaldos.kas_bank', 'Terima Dana')  // Menambahkan kondisi pada kolom 'kas_bank'
-        ->sum('rekening_saldo_items.biaya');  // Mengambil total 'biaya' dari tabel 'saldoitems'    
+        ->sum('rekeningsaldo_items.biaya');  // Mengambil total 'biaya' dari tabel 'saldoitems'    
 
         // Total pengeluaran dari semua transaksi yang sudah lunas
         $totalExpense = DB::table('transaction_items')
