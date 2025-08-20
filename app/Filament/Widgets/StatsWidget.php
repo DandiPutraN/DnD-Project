@@ -31,9 +31,9 @@ class StatsWidget extends BaseWidget
         $rekeningData = $this->calculateBalanceData('1-00002 - Rekening', 'Terima Dana', $start, $end);
 
         $totalIncome = RekeningSaldoItem::query()
-        ->join('rekeningsaldos', 'rekeningsaldoitems.rekeningsaldo_id', '=', 'rekeningsaldos.id')  // Melakukan join dengan tabel 'saldos'
+        ->join('rekeningsaldos', 'rekening_saldo_items.rekeningsaldo_id', '=', 'rekeningsaldos.id')  // Melakukan join dengan tabel 'saldos'
         ->where('rekeningsaldos.kas_bank', 'Terima Dana')  // Menambahkan kondisi pada kolom 'kas_bank'
-        ->sum('rekeningsaldoitems.biaya');  // Mengambil total 'biaya' dari tabel 'saldoitems'    
+        ->sum('rekening_saldo_items.biaya');  // Mengambil total 'biaya' dari tabel 'saldoitems'    
 
         // Total pengeluaran dari semua transaksi yang sudah lunas
         $totalExpense = DB::table('transaction_items')
