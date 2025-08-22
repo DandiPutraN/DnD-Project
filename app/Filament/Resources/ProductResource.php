@@ -123,9 +123,6 @@ class ProductResource extends Resource
                     return '<img src="https://bwipjs-api.metafloor.com/?bcid=code128&text=' . $record->barcode . '&scale=2&includetext" height="60">';
                 })
                 ->html(),
-
-                Tables\Columns\TextColumn::make('barcode')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

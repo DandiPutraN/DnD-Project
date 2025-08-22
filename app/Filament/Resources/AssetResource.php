@@ -196,17 +196,6 @@ class AssetResource extends Resource
                         ->columnSpan(6)
                         ->label('Metode Penyusutan')
                         ->reactive(),
-                    
-                        // Forms\Components\Select::make('akumulasi_penyusutan')
-                        //     ->relationship('account', 'id', fn ($query) => $query->whereIn('id', [400, 401, 402, 403, 404, 405, 406]))
-                        //     ->label('Akumulasi Penyusutan')
-                        //     ->searchable()
-                        //     ->required()
-                        //     ->columnSpan(3)
-                        //     ->preload()
-                        //     ->getOptionLabelFromRecordUsing(function ($record) {
-                        //         return '1-' . str_pad($record->id, 5, '0', STR_PAD_LEFT) . ' - ' . $record->nama;
-                        // }),      
                         
                         Forms\Components\BelongsToSelect::make('akun_penyusutan')
                         ->relationship('account', 'id', fn ($query) => $query->whereBetween('id', [100, 153]))
@@ -298,13 +287,6 @@ class AssetResource extends Resource
                 ->tooltip('Nilai Buku Setelah Penyusutan')
                 ->label('Nilai Buku'),
 
-                // Tables\Columns\TextColumn::make('masa_manfaat')
-                //     ->label('Masa Manfaat')
-                //     ->sortable(),
-
-                //     Tables\Columns\TextColumn::make('presentase_penyusutan')
-                // ->label('Persentase (%)'),
-
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -382,39 +364,6 @@ class AssetResource extends Resource
                     }
                 })
                 ->deselectRecordsAfterCompletion(),
-            
-                // Tables\Actions\BulkAction::make('penyusutan')
-                // ->color('warning')
-                // ->label('Jalankan Penyusutan')
-                // ->icon('heroicon-o-play-circle')
-                // ->requiresConfirmation()
-                // ->action(function ($records) {
-                //     // Pisahkan aset yang bisa dan tidak bisa disusutkan
-                //     $dapatDisusutkan = $records->filter(fn ($record) => $record->status === 'terdaftar');
-                //     $tidakDapatDisusutkan = $records->filter(fn ($record) => $record->status !== 'terdaftar');
-            
-                //     // Jalankan penyusutan hanya untuk aset yang memenuhi syarat
-                //     if ($dapatDisusutkan->isNotEmpty()) {
-                //         static::hitungPenyusutanBulk($dapatDisusutkan);
-            
-                //         // Tampilkan notifikasi sukses jika ada aset yang diproses
-                //         Notification::make()
-                //             ->title('Penyusutan Berhasil')
-                //             ->body(count($dapatDisusutkan) . ' aset telah disusutkan.')
-                //             ->success()
-                //             ->send();
-                //     }
-            
-                //     // Jika ada aset yang tidak bisa disusutkan, tampilkan notifikasi peringatan
-                //     if ($tidakDapatDisusutkan->isNotEmpty()) {
-                //         Notification::make()
-                //             ->title('Beberapa Aset Tidak Disusutkan')
-                //             ->body(count($tidakDapatDisusutkan) . ' aset tidak memiliki status "terdaftar" dan tidak dapat disusutkan.')
-                //             ->warning()
-                //             ->send();
-                //     }
-                // })
-                // ->deselectRecordsAfterCompletion(),   
                          
             ])
             ->headerActions([
@@ -516,14 +465,6 @@ class AssetResource extends Resource
                                     Components\TextEntry::make('akumulasi_penyusutan')
                                     ->label('Akun Akumulasi Penyusutan')
                                     ->hidden(fn ($record) => empty($record->akumulasi_penyusutan)),                                
-
-                                    // Components\TextEntry::make('akun_penyusutan')
-                                    // ->label('Akun Penyusutan')
-                                    // ->formatStateUsing(fn ($state, $record) => 
-                                    //     $record->account?->id . ' - ' . $record->account?->nama ?? 'Tidak ada penyusutan'
-                                    // )
-                                    // ->hidden(fn ($record) => empty($record->akun_penyusutan)),
-                                 
                                     
                                     Components\TextEntry::make('metode_penyusutan')
                                     ->badge()
@@ -588,20 +529,6 @@ class AssetResource extends Resource
             ->body("Penyusutan aset telah berhasil diperbarui untuk beberapa aset.")
             ->success()
             ->send();
-    
-        // // **Notifikasi ke Admin & Panel User**
-        // $namaAsetStr = implode(', ', $namaAset);
-        // $users = User::whereHas('roles', function ($query) {
-        //     $query->whereIn('name', ['super_admin', 'panel_user']);
-        // })->get();
-    
-        // foreach ($users as $user) {
-        //     Notification::make()
-        //         ->title('Penyusutan Aset Diperbarui')
-        //         ->body("Sebanyak **{$totalAset} aset** telah mengalami penyusutan.\n\n📋 **Daftar Aset:** {$namaAsetStr}.")
-        //         ->success()
-        //         ->sendToDatabase($user);
-        // }
     
         return $penyusutanData; // Kembalikan nilai penyusutan per aset
     }

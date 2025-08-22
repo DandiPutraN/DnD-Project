@@ -100,15 +100,16 @@ class TransactionAsset extends ManageRelatedRecords
                                 Grid::make(5)->schema([
                                     Select::make('account_id')
                                         ->relationship('account', 'nama')
-                                        ->label('Kategori Aset')
+                                        ->label('Kategori Aset') 
+                                        ->getOptionLabelFromRecordUsing(function ($record) {
+                                            return '1-' . str_pad($record->id, 5, '0', STR_PAD_LEFT) . ' - ' . $record->nama;
+                                        })
                                         ->columnSpan(3), // Menggunakan 3 kolom dari Grid 5
-                                        // ->disabled(),
                 
                                     TextInput::make('kredit')
                                         ->label('Biaya (Kredit)')
                                         ->numeric()
                                         ->columnSpan(2), // Menggunakan 2 kolom dari Grid 5
-                                        // ->disabled(),
                                 ]),
                             ])
                             ->columnSpanFull() // Menyesuaikan dengan Grid parent
