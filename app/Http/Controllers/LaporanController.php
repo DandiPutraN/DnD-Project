@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Saldo;
-use App\Models\RekeningSaldo;
+use App\Models\Rekeningsaldo;
 use App\Models\SaldoItem;
 use App\Models\transaction;
 use Illuminate\Http\Request;
