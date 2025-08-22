@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ExpenseResource\Pages;
-use App\Filament\Resources\ExpenseResource\RelationManagers;
-use App\Models\Expense;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Expense;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Section;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\ExpenseResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\ExpenseResource\RelationManagers;
 
 class ExpenseResource extends Resource
 {
@@ -27,22 +29,41 @@ class ExpenseResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('note')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\DatePicker::make('date_expense')
-                    ->required()
-                    ->displayFormat('d F Y')
-                    ->weekStartsOnMonday()
-                    ->locale('id')
-                    ->native(false),
-                Forms\Components\TextInput::make('amount')
-                    ->required()
-                    ->numeric()
-                    ->minValue(0),
+                Group::make([
+                    Section::make([
+                        Forms\Components\Select::make('name')
+                            ->label('Akun Biaya')
+                            ->options(
+                                \App\Models\Account::query()
+                                    ->where('kategori', '!=', 'Kas & Bank')
+                                    ->get()
+                                    ->mapWithKeys(function ($account) {
+                                        return [
+                                            '1-' . str_pad($account->id, 5, '0', STR_PAD_LEFT) . ' - ' . $account->nama 
+                                            => '1-' . str_pad($account->id, 5, '0', STR_PAD_LEFT) . ' - ' . $account->nama
+                                        ];
+                                    })
+                            )
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                            Forms\Components\DatePicker::make('date_expense')
+                                ->required()
+                                ->default(now())
+                                ->displayFormat('d F Y')
+                                ->weekStartsOnMonday()
+                                ->locale('id')
+                                ->native(false),
+                        Forms\Components\Textarea::make('note')
+                        ->columnSpanFull(),
+                        Forms\Components\TextInput::make('amount')
+                            ->required()
+                            ->numeric()
+                            ->prefix('Rp.')
+                            ->columnSpanFull()
+                            ->minValue(0),                        
+                    ])->columns(2)
+                ])->columnSpan(2),
             ]);
     }
 
@@ -57,6 +78,7 @@ class ExpenseResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('amount')
                     ->numeric()
+                    ->money('IDR')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -82,7 +104,7 @@ class ExpenseResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                ])->label('Setting'),
             ]);
     }
 

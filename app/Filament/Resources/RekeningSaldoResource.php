@@ -320,18 +320,6 @@ class RekeningSaldoResource extends Resource
                 ]),
             ])->columnSpanFull(),
 
-            // Section::make()->schema([
-            //     FileUpload::make('images')
-            //         ->label('Bukti Transaksi')
-            //         ->multiple() // Mengizinkan unggah banyak gambar
-            //         ->directory('uploads/bukti-transaksi') // Lokasi penyimpanan file
-            //         ->image() // Hanya menerima file gambar
-            //         ->maxSize(2048) // Maksimum ukuran file per gambar (dalam KB)
-            //         ->maxFiles(5) // Batas maksimum jumlah gambar
-            //         ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg']) // Format file yang diperbolehkan
-            //         ->helperText('Unggah hingga 5 gambar dengan format .jpg, .jpeg, atau .png.'),
-            // ]),
-            
             Hidden::make('user_id')
             ->default(1),
 
@@ -566,8 +554,6 @@ class RekeningSaldoResource extends Resource
             ->actions([
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\ViewAction::make(),
-                    // Tables\Actions\EditAction::make(),
-
                     Tables\Actions\Action::make('downloadBukti')
                     ->label('Bukti Transaksi')
                     ->icon('heroicon-o-photo')
@@ -637,16 +623,6 @@ class RekeningSaldoResource extends Resource
                             ->body("Pembayaran transaksi berhasil untuk **{$penerima} - {$accountName}**.")
                             ->success()
                             ->send();
-
-                        // // **2. Notifikasi untuk Admin (Masuk ke lonceng/Database)**
-                        // $admins = User::role('super_admin')->get();
-                        // foreach ($admins as $admin) {
-                        //     Notification::make()
-                        //         ->title('Status Lunas')
-                        //         ->body("**{$penerima} - {$accountName}** Pembayaran transaksi Bank berhasil diperbarui menjadi \"Sudah Dikirim\".")
-                        //         ->success()
-                        //         ->sendToDatabase($admin);
-                        // }
                     })
                     ->requiresConfirmation()
                     ->visible(fn ($record) => $record->transaction && $record->transaction->status === 'pending'),
@@ -673,15 +649,6 @@ class RekeningSaldoResource extends Resource
                             ->danger()
                             ->send();
                 
-                        // // **2. Notifikasi untuk Admin (Lonceng/Database)**
-                        // $admins = User::role('super_admin')->get();
-                        // foreach ($admins as $admin) {
-                        //     Notification::make()
-                        //         ->title('Transaksi Ditolak')
-                        //         ->body("**{$penerima} - {$accountName}** Transaksi telah ditolak oleh {$User}.")
-                        //         ->danger()
-                        //         ->sendToDatabase($admin);
-                        // }
                     })
                     ->requiresConfirmation()
                     ->visible(fn ($record) => $record->transaction && $record->transaction->status === 'pending'),
@@ -704,44 +671,9 @@ class RekeningSaldoResource extends Resource
                             ->success()
                             ->send();
                 
-                        // // **2. Notifikasi untuk Admin (Lonceng/Database)**
-                        // $admins = User::role('super_admin')->get();
-                        // foreach ($admins as $admin) {
-                        //     Notification::make()
-                        //         ->title('Status Dikirim')
-                        //         ->body("**{$penerima} - {$accountName}** Saldo sebesar Rp{$subtotal} telah berhasil dikirim.")
-                        //         ->success()
-                        //         ->sendToDatabase($admin);
-                        // }
                     })
                     ->requiresConfirmation()
                     ->visible(fn (rekeningsaldo $record) => $record->status === 'pending'),
-                
-                // Tables\Actions\Action::make('markAsPending')
-                //     ->label('Tandai Belum Lunas')
-                //     ->icon('heroicon-o-x-circle')
-                //     ->action(function ($record) {
-                //         // Perbarui status transaksi jika ada hubungan dengan transaksi
-                //         if ($record->transaction) {
-                //             $record->transaction->update(['status' => 'pending']);
-                //         }
-                        
-                //         // Tetap perbarui status `lunas`
-                //         $record->update(['lunas' => false]);
-                
-                //         // Kirim notifikasi
-                //         Notification::make()
-                //             ->title('Status Belum Lunas')
-                //             ->body('Transaksi ditandai sebagai belum terbayar.')
-                //             ->warning()
-                //             ->send()
-                //             ->sendToDatabase(User::whereHas('roles', function ($query) {
-                //                 $query->where('name', 'admin');
-                //             })->get());
-                //     })
-                //     ->requiresConfirmation()
-                //     ->visible(fn ($record) => $record->transaction && $record->transaction->status === 'paid')
-                    
             ]),
         ])
         ->bulkActions([

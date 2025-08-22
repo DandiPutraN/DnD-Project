@@ -96,7 +96,7 @@ class SaldoResource extends Resource
                             ->afterStateUpdated(function ($state, callable $set) {
                                 if ($state) {
                                     // Ambil transactionitems berdasarkan transaction_id yang dipilih
-                                    $transactionItems = \App\Models\transactionitem::where('transaction_id', $state)->get();
+                                    $transactionItems = \App\Models\TransactionItem::where('transaction_id', $state)->get();
                                     $saldo_items = $transactionItems->map(fn ($item) => [
                                         'account_id' => $item->account_id,
                                         'biaya' => $item->biaya,

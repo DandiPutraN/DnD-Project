@@ -10,14 +10,20 @@
                 <livewire:scanner-modal-component />
             </div>
             <div class="flex-grow">
-                <div class="grid grid-cols-8 sm:grid-cols-3 md:grid-cols-8 lg:grid-cols- gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     @foreach ($products as $product)
-                    <div wire:click="addToOrders({{ $product->id }})" class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow cursor-pointer">
+                    <div wire:click="addToOrders({{ $product->id }})"
+                        class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow cursor-pointer">
                         <img src="{{ $product->image_url }}"
-                            alt="Product Image" class="w-full h-16 object-cover rounded-lg mb-2">
+                            alt="Product Image"
+                            class="w-full h-32 object-cover rounded-lg mb-2">
                         <h3 class="text-sm font-semibold">{{ $product->name }}</h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-xs">Rp. {{ number_format($product->price, 0, ',', '.') }}</p>
-                        <p class="text-gray-600 dark:text-gray-400 text-xs">Stok: {{ $product->stock }}</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs">
+                            Rp. {{ number_format($product->price, 0, ',', '.') }}
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs">
+                            Stok: {{ $product->stock }}
+                        </p>
                     </div>
                     @endforeach
                 </div>

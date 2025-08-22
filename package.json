@@ -3,6 +3,7 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
+        "postbuild": "cp -r storage/app/public public/storage",
         "dev": "vite"
     },
     "devDependencies": {

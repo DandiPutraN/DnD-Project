@@ -39,7 +39,7 @@ class PointOfSales extends Component implements HasForms
         return view('livewire.point-of-sales', [
             'products' => Product::where('stock', '>', 0)
                 ->search($this->search)
-                ->paginate(1)
+                ->paginate(3)
         ]);
     }
 
