@@ -94,7 +94,7 @@
                                 <td>{{ $nomorUrut++ }}</td>
                                 <td>{{ \Carbon\Carbon::parse($saldo->tanggal_transaksi)->format('d/M/Y') }}</td>
                                 <td>
-                                    {{ $item->category ? $item->category->nama : 'Tidak ada kategori' }} 
+                                    {{ $item->account ? $item->account->nama : 'Tidak ada kategori' }} 
                                     - 
                                     {{ $item->keterangan ?? 'Tidak ada keterangan' }}
                                 </td>
@@ -149,14 +149,14 @@
                 <div class="signature-box">
                     <p class="mb-4">Finance,</p>
                     <div style="height: 100px;"></div>
-                    <strong>Fathya</strong>
+                    <strong>Staff</strong>
                 </div>
             </div>
             <div class="col-6 text-center">
                 <div class="signature-box">
                     <p class="mb-4">Menyetujui,</p>
                     <div style="height: 100px;"></div>
-                    <strong>Ibu Lia</strong>
+                    <strong>Manager</strong>
                 </div>
             </div>
         </div>

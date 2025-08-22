@@ -85,7 +85,7 @@
                                     <td>{{ $nomorUrut++ }}</td>
                                     <td>{{ \Carbon\Carbon::parse($rekeningsaldo->tanggal_transaksi)->format('d/M/Y') }}</td>
                                     <td>
-                                        {{ $item->category ? $item->category->nama : 'Tidak ada kategori' }} 
+                                        {{ $item->account ? $item->account->nama : 'Tidak ada kategori' }} 
                                         - 
                                         {{ $item->keterangan ?? 'Tidak ada keterangan' }}
                                     </td>
@@ -140,102 +140,20 @@
             </table>
         </div>
         
-
-        {{-- <!-- Bagian Transaksi -->
-        <div class="mb-4">
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Tanggal</th>
-                        <th>Keterangan</th>
-                        <th>Debit</th>
-                        <th>Kredit</th>
-                        <th>Saldo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                        $sisarekeningSaldo = $rekeningsaldo_awal ?? 0;
-                        $totalDebit = 0;
-                        $totalKredit = 0;
-                        $nomorUrut = 1;
-                    @endphp
-
-                    @forelse($rekeningsaldos as $rekeningsaldo)
-                        @foreach($rekeningsaldo->rekeningsaldo_items as $item)
-                            <tr>
-                                <td>{{ $nomorUrut++ }}</td>
-                                <td>{{ \Carbon\Carbon::parse($rekeningsaldo->tanggal_transaksi)->format('d/M/Y') }}</td>
-                                <td>
-                                    {{ $item->category ? $item->category->nama : 'Tidak ada kategori' }} 
-                                    - 
-                                    {{ $item->keterangan ?? 'Tidak ada keterangan' }}
-                                </td>
-                                <td>
-                                    @php
-                                        $isDebit = $rekeningsaldo->kas_bank == 'Terima Dana';
-                                        $biaya = $item->biaya;
-                                    @endphp
-
-                                    @if ($isDebit)
-                                        Rp. {{ number_format($biaya, 2, ',', '.') }}
-                                        @php $totalDebit += $biaya; @endphp
-                                    @else
-                                        0
-                                    @endif
-                                </td>
-                                <td>
-                                    @if (!$isDebit)
-                                        Rp. {{ number_format($biaya, 2, ',', '.') }}
-                                        @php $totalKredit += $biaya; @endphp
-                                    @else
-                                        0
-                                    @endif
-                                </td>
-                                <td>
-                                    @php
-                                        if ($isDebit) {
-                                            $sisarekeningSaldo += $biaya;
-                                        } else {
-                                            $sisarekeningSaldo -= $biaya;
-                                        }
-                                    @endphp
-                                    Rp. {{ number_format($sisarekeningSaldo, 2, ',', '.') }}
-                                </td>
-                            </tr>
-                        @endforeach
-                    @empty
-                        <tr>
-                            <td colspan="6" class="text-center">Tidak ada data transaksi</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="3" class="text-center">Jumlah</th>
-                        <th>Rp. {{ number_format($totalDebit, 2, ',', '.') }}</th>
-                        <th>Rp. {{ number_format($totalKredit, 2, ',', '.') }}</th>
-                        <th>Rp. {{ number_format($rekeningsaldo_awal + $totalDebit - $totalKredit, 2, ',', '.') }}</th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div> --}}
-
         <!-- Bagian Tanda Tangan -->
         <div class="signature-section row mt-5">
             <div class="col-6 text-center">
                 <div class="signature-box">
                     <p class="mb-4">Finance,</p>
                     <div style="height: 100px;"></div>
-                    <strong>Fathya</strong>
+                    <strong>Staff</strong>
                 </div>
             </div>
             <div class="col-6 text-center">
                 <div class="signature-box">
                     <p class="mb-4">Menyetujui,</p>
                     <div style="height: 100px;"></div>
-                    <strong>Ibu Lia</strong>
+                    <strong>Manager</strong>
                 </div>
             </div>
         </div>

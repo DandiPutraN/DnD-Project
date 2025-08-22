@@ -19,7 +19,7 @@ class LaporanController extends Controller
         // Query dasar dengan eager loading
         $query = Saldo::with([
             'saldo_items', 
-            'saldo_items.category'
+            'saldo_items.account'
         ])->orderBy('tanggal_transaksi');
     
         // Jika ada data terpilih di session
@@ -82,7 +82,7 @@ class LaporanController extends Controller
         // Query dasar dengan eager loading
         $query = Rekeningsaldo::with([
             'rekeningsaldo_items', 
-            'rekeningsaldo_items.category'
+            'rekeningsaldo_items.account'
         ])->orderBy('tanggal_transaksi');
     
         // Jika ada data terpilih di session
