@@ -80,7 +80,7 @@ class LaporanController extends Controller
         $selected = $request->query('selected', false);
         
         // Query dasar dengan eager loading
-        $query = RekeningSaldo::with([
+        $query = Rekeningsaldo::with([
             'rekeningsaldo_items', 
             'rekeningsaldo_items.category'
         ])->orderBy('tanggal_transaksi');
@@ -111,7 +111,7 @@ class LaporanController extends Controller
         if ($rekeningsaldo->isNotEmpty()) {
             $tanggalPertama = $rekeningsaldo->min('tanggal_transaksi');
             
-            $rekeningsaldoSebelumnya = RekeningSaldo::where('tanggal_transaksi', '<', $tanggalPertama)
+            $rekeningsaldoSebelumnya = Rekeningsaldo::where('tanggal_transaksi', '<', $tanggalPertama)
                 ->orderBy('tanggal_transaksi', 'desc')
                 ->first();
     
