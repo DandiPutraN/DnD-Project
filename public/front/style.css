@@ -204,8 +204,9 @@ span {
 .about-card-content {
   display: grid;
   justify-items: center;
-  margin: 0rem 15rem;
-  grid-template-columns: repeat(2, 1fr);
+  margin: 0 auto;
+  gap: 1.5rem; /* default gap */
+  grid-template-columns: repeat(4, 1fr); /* default desktop: 4 kolom */
 }
 
 .about-card {
@@ -381,10 +382,6 @@ span {
     margin: 0rem 15rem 5rem;
   }
 
-  .about-card-content {
-    margin: 0rem 0rem;
-  }
-
   .portfolio-content {
     margin: 0rem 5rem;
   }
@@ -428,13 +425,9 @@ span {
     padding: 10rem 3% 2rem;
   }
 
-  .about-content p {
-    margin: 0rem 5rem 5rem;
-  }
-
   .about-card-content {
-    gap: 6rem;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* jadi 3 kolom */
+    gap: 2rem;
   }
 
   .portfolio {
@@ -485,6 +478,11 @@ span {
     font-size: 3.6rem;
   }
 
+  .about-card-content {
+    grid-template-columns: repeat(2, 1fr); /* jadi 2 kolom */
+    gap: 1.5rem;
+  }
+
   .home-content h1 {
     font-size: 6rem;
   }
@@ -525,6 +523,11 @@ span {
 @media (max-width: 365px) {
   html {
     font-size: 45%;
+  }
+
+  .about-card-content {
+    grid-template-columns: repeat(1, 1fr); /* jadi 1 kolom */
+    gap: 1rem;
   }
 
   .home-content h3 {
