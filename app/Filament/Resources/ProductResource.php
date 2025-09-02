@@ -143,7 +143,7 @@ class ProductResource extends Resource
                 Tables\Actions\Action::make('downloadGambar')
                 ->label('Gambar')
                 ->icon('heroicon-o-photo')
-                ->url(fn ($record) => asset('product-images/' . $record->image))
+                ->url(fn ($record) => url('storage/' . strtoupper($record->image)))
                 ->openUrlInNewTab()
                 ->visible(fn ($record) => !empty($record->image)),
 
