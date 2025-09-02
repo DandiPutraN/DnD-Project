@@ -8,7 +8,7 @@
 		<nav class="navbar">
 			<a href="#home" class="active">Home</a>
 			<a href="#about">About</a>
-			<a href="#portfolio">Portfolio</a>
+			<a href="#portfolio">Portofolio</a>
 			<a href="#contact">Contact</a>
 			<a href="/admin">Apps</a>
 			{{-- <div style="position: relative;">
