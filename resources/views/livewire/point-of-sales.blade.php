@@ -14,8 +14,7 @@
                     @foreach ($products as $product)
                     <div wire:click="addToOrders({{ $product->id }})"
                         class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow cursor-pointer">
-                        <img src="{{ $product->image_url }}"
-                            alt="Product Image"
+                        <img src="{{ asset('product-images/'.$product->image_name) }}" alt="Product Image"
                             class="w-full h-32 object-cover rounded-lg mb-2">
                         <h3 class="text-sm font-semibold">{{ $product->name }}</h3>
                         <p class="text-gray-600 dark:text-gray-400 text-xs">
